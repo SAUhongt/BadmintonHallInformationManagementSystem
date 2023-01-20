@@ -15,7 +15,7 @@ public class Member {
 
   private String name;
 
-  private Date birthday;
+  private String birthday;
 
   private int point;
 
@@ -41,11 +41,7 @@ public class Member {
     this.name = name;
   }
 
-  public Date getBirthday() {
-    return birthday;
-  }
-
-  public void setBirthday(Date birthday) {
+  public void setBirthday(String birthday) {
     this.birthday = birthday;
   }
 

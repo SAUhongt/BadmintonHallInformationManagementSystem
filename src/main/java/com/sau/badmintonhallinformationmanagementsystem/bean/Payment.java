@@ -2,6 +2,7 @@ package com.sau.badmintonhallinformationmanagementsystem.bean;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import io.swagger.models.auth.In;
 import java.sql.Date;
 
 /**
@@ -13,7 +14,7 @@ public class Payment {
   @TableId(type = IdType.AUTO)
   private int id;
 
-  private int memberId;
+  private Integer memberId;
 
   private String info;
 
@@ -27,11 +28,11 @@ public class Payment {
     this.id = id;
   }
 
-  public int getMemberId() {
+  public Integer getMemberId() {
     return memberId;
   }
 
-  public void setMemberId(int memberId) {
+  public void setMemberId(Integer memberId) {
     this.memberId = memberId;
   }
 

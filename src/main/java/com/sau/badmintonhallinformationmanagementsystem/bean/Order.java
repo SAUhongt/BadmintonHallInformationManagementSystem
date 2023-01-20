@@ -4,8 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.sql.Date;
-import java.sql.Time;
 
 /**
  * @author SRDZ
@@ -18,21 +16,21 @@ public class Order {
   @TableId(type = IdType.AUTO)
   private int id;
 
-  private int memberId;
+  private Integer memberId;
 
   @TableField(exist = false)
   private String memberName;
-  private int coachId;
+  private Integer coachId;
 
   @TableField(exist = false)
   private String coachName;
 
-  private int fieldId;
+  private Integer fieldId;
 
   @TableField(exist = false)
   private String fieldName;
 
-  private int courseId;
+  private Integer courseId;
 
   @TableField(exist = false)
   private String courseName;
@@ -49,11 +47,11 @@ public class Order {
     this.id = id;
   }
 
-  public int getMemberId() {
+  public Integer getMemberId() {
     return memberId;
   }
 
-  public void setMemberId(int memberId) {
+  public void setMemberId(Integer memberId) {
     this.memberId = memberId;
   }
 
@@ -65,11 +63,11 @@ public class Order {
     this.memberName = memberName;
   }
 
-  public int getCoachId() {
+  public Integer getCoachId() {
     return coachId;
   }
 
-  public void setCoachId(int coachId) {
+  public void setCoachId(Integer coachId) {
     this.coachId = coachId;
   }
 
@@ -81,11 +79,11 @@ public class Order {
     this.coachName = coachName;
   }
 
-  public int getFieldId() {
+  public Integer getFieldId() {
     return fieldId;
   }
 
-  public void setFieldId(int fieldId) {
+  public void setFieldId(Integer fieldId) {
     this.fieldId = fieldId;
   }
 
@@ -97,11 +95,11 @@ public class Order {
     this.fieldName = fieldName;
   }
 
-  public int getCourseId() {
+  public Integer getCourseId() {
     return courseId;
   }
 
-  public void setCourseId(int courseId) {
+  public void setCourseId(Integer courseId) {
     this.courseId = courseId;
   }
 
