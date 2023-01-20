@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sau.badmintonhallinformationmanagementsystem.mapper.OrderMapper">
+
+  <select id="findOrderPage" resultType="com.sau.badmintonhallinformationmanagementsystem.bean.Order">
+    select o.*,m.name memberName,f.name fieldName,c.name courseName,co.name coachName
+    from orders o left join member m on o.member_id = m.id left join field f on o.field_id = f.id
+     left join course c on o.course_id = c.id left join coach co on o.coach_id = co.id
+  </select>
+</mapper>
