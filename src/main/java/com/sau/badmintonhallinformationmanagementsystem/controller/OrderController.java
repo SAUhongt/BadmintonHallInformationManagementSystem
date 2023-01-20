@@ -71,4 +71,29 @@ public class OrderController {
     return Result.error().message("删除失败");
   }
 
+  @GetMapping("/exist")
+  public Result orderExist(int flag,int id){
+    /*
+    *  1 会员
+    * 2 教练
+    * 3 场地
+    * 4 课程
+    * */
+    int result = 0;
+
+    if(flag == 1){
+      result = orderMapper.existOrderByMemberId(id);
+    }else if(flag == 2){
+      result = orderMapper.existOrderByCoachId(id);
+    }else if(flag == 3){
+      result = orderMapper.existOrderByFieldId(id);
+    }else if(flag == 4){
+      result = orderMapper.existOrderByCourseId(id);
+    }else{
+      return Result.error().message("标志错误");
+    }
+
+    return Result.ok().data("sum",result);
+  }
+
 }

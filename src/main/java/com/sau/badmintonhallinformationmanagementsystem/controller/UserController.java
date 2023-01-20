@@ -50,7 +50,7 @@ public class UserController {
     return Result.error().message("用户不存在");
   }
 
-  @GetMapping("logout")
+  @PostMapping("logout")
   public Result logout(){
     return Result.ok();
   }

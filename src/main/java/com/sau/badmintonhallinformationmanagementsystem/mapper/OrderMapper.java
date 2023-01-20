@@ -48,4 +48,18 @@ public interface OrderMapper extends BaseMapper<Order> {
   int deleteById(@Param("id") int id);
 
   Page<Order> findOrderPage(Page<Order> page);
+
+  @Select("select count(0) from orders where member_id = #{id}")
+  int existOrderByMemberId(@Param("id") int id);
+
+  @Select("select count(0) from orders where coach_id = #{id}")
+  int existOrderByCoachId(@Param("id") int id);
+
+  @Select("select count(0) from orders where field_id = #{id}")
+  int existOrderByFieldId(@Param("id") int id);
+
+  @Select("select count(0) from orders where course_id = #{id}")
+  int existOrderByCourseId(@Param("id") int id);
+
+
 }
