@@ -2,7 +2,6 @@ package com.sau.badmintonhallinformationmanagementsystem.bean;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.sql.Date;
 
 /**
  * @author SRDZ
@@ -43,6 +42,10 @@ public class Member {
 
   public void setBirthday(String birthday) {
     this.birthday = birthday;
+  }
+
+  public String getBirthday() {
+    return birthday;
   }
 
   public int getPoint() {
