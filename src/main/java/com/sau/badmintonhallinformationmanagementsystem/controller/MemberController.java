@@ -29,8 +29,8 @@ public class MemberController {
   private MemberMapper memberMapper;
 
   @GetMapping
-  public Result findAll(){
-    List list = memberMapper.findAll();
+  public Result findAll(String like){
+    List list = memberMapper.findAll(like);
     if(list!=null)
       return Result.ok().data("items",list);
     return Result.error().message("异常");

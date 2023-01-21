@@ -1,6 +1,7 @@
 package com.sau.badmintonhallinformationmanagementsystem.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.sau.badmintonhallinformationmanagementsystem.bean.Coach;
 import com.sau.badmintonhallinformationmanagementsystem.bean.Course;
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
@@ -16,8 +17,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CourseMapper extends BaseMapper<Course> {
 
-  @Select("select * from course")
-  List<Course> findAll();
+  @Select("select * from course where id like #{like} or name like #{like} limit 50")
+  List<Course > findAll(String like);
 
   @Select("select name from course where id = #{id}")
   String selectNameById( int id);

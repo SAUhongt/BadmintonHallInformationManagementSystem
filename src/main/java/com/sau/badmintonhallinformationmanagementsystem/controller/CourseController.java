@@ -32,8 +32,8 @@ public class CourseController {
   private CourseMapper courseMapper;
 
   @GetMapping
-  public Result findAll(){
-    List list = courseMapper.findAll();
+  public Result findAll(String like){
+    List list = courseMapper.findAll(like);
     if(list!=null)
       return Result.ok().data("items",list);
     return Result.error().message("异常");

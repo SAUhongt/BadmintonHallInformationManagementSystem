@@ -15,8 +15,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CoachMapper extends BaseMapper<Coach> {
 
-  @Select("select * from coach")
-  List<Coach> findAll();
+  @Select("select * from coach where id like #{like} or name like #{like} limit 50")
+  List<Coach> findAll(String like);
 
   @Select("select name from coach where id = #{id}")
   String selectNameById(int id);

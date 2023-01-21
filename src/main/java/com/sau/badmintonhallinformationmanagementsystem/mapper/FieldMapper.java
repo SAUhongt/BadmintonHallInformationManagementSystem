@@ -1,6 +1,7 @@
 package com.sau.badmintonhallinformationmanagementsystem.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.sau.badmintonhallinformationmanagementsystem.bean.Coach;
 import com.sau.badmintonhallinformationmanagementsystem.bean.Field;
 import java.util.List;
 import org.apache.ibatis.annotations.Delete;
@@ -16,8 +17,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FieldMapper extends BaseMapper<Field> {
 
-  @Select("select * from field")
-  List<Field> findAll();
+  @Select("select * from field where id like #{like} or name like #{like} limit 50")
+  List<Field> findAll(String like);
 
   @Select("select name from field where id = #{id}")
   String selectNameById(int id);

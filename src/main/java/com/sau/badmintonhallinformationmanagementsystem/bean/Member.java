@@ -18,7 +18,7 @@ public class Member {
 
   private int point;
 
-  private String royalty;
+  private String royalty = "0";
 
   private String grade;
 

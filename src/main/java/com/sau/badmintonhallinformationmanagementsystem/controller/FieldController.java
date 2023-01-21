@@ -30,8 +30,8 @@ public class FieldController {
   private FieldMapper fieldMapper;
 
   @GetMapping
-  public Result findAll(){
-    List<Field> list = fieldMapper.findAll();
+  public Result findAll(String like){
+    List list = fieldMapper.findAll(like);
     if(list!=null)
       return Result.ok().data("items",list);
     return Result.error().message("异常");

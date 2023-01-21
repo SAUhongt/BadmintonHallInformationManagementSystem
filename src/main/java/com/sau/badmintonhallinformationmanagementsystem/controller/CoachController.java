@@ -29,8 +29,8 @@ public class CoachController {
   private CoachMapper coachMapper;
 
   @GetMapping
-  public Result findAll(){
-    List<Coach> list = coachMapper.findAll();
+  public Result findAll(String like){
+    List<Coach> list = coachMapper.findAll(like);
     if(list!=null)
       return Result.ok().data("items",list);
     return Result.error().message("异常");
