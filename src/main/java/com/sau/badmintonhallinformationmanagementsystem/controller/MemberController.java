@@ -1,5 +1,6 @@
 package com.sau.badmintonhallinformationmanagementsystem.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sau.badmintonhallinformationmanagementsystem.bean.Member;
@@ -69,6 +70,23 @@ public class MemberController {
     if(result!=0)
       return Result.ok().message("删除成功");
     return Result.error().message("删除失败");
+  }
+
+  @GetMapping("/exist")
+  public Result isExist(int id){
+    QueryWrapper<Member> queryWrapper = new QueryWrapper<>();
+    int result = memberMapper.selectCount(queryWrapper.eq("id",id));
+    if(result!=0){
+      return Result.ok().data("exist",true);
+    }
+    return Result.ok().data("exist",false);
+  }
+
+  @GetMapping("/birthday")
+  public Result isBirthday(String key){
+    QueryWrapper<Member> queryWrapper = new QueryWrapper<>();
+    List list = memberMapper.selectList(queryWrapper.like("birthday","%"+key));
+    return Result.ok().data("items",list).data("total",list.size());
   }
 
 }

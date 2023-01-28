@@ -16,6 +16,8 @@ public class Payment {
 
   private Integer memberId;
 
+  private int bonus;
+
   private String info;
 
   private Date payTime;
@@ -34,6 +36,14 @@ public class Payment {
 
   public void setMemberId(Integer memberId) {
     this.memberId = memberId;
+  }
+
+  public int getBonus() {
+    return bonus;
+  }
+
+  public void setBonus(int bonus) {
+    this.bonus = bonus;
   }
 
   public String getInfo() {
@@ -57,6 +67,7 @@ public class Payment {
     return "Payment{" +
         "id=" + id +
         ", memberId=" + memberId +
+        ", bonus=" + bonus +
         ", info='" + info + '\'' +
         ", payTime=" + payTime +
         '}';

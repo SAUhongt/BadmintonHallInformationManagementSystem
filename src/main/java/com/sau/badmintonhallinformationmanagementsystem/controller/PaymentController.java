@@ -1,5 +1,7 @@
 package com.sau.badmintonhallinformationmanagementsystem.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sau.badmintonhallinformationmanagementsystem.bean.Coach;
@@ -10,6 +12,7 @@ import com.sau.badmintonhallinformationmanagementsystem.mapper.PaymentMapper;
 import com.sau.badmintonhallinformationmanagementsystem.service.PaymentService;
 import com.sau.badmintonhallinformationmanagementsystem.utils.Result;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -54,7 +57,6 @@ public class PaymentController {
 
   @PostMapping
   public Result add(@RequestBody Payment payment){
-
     int result = paymentService.insert(payment);
     if(result!=0)
       return Result.ok().message("插入成功");
@@ -76,5 +78,10 @@ public class PaymentController {
     if(result!=0)
       return Result.ok().message("删除成功");
     return Result.error().message("删除失败");
+  }
+
+  @PostMapping("/getPaySum")
+  public Result getPaySum(@RequestBody JSONObject jsonObject){
+    return paymentService.getPaySum(jsonObject);
   }
 }

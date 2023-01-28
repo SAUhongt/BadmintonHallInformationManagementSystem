@@ -1,5 +1,6 @@
 package com.sau.badmintonhallinformationmanagementsystem.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.sau.badmintonhallinformationmanagementsystem.bean.Coach;
@@ -69,5 +70,15 @@ public class FieldController {
     if(result!=0)
       return Result.ok().message("删除成功");
     return Result.error().message("删除失败");
+  }
+
+  @GetMapping("/exist")
+  public Result isExist(int id){
+    QueryWrapper<Field> queryWrapper = new QueryWrapper<>();
+    int result = fieldMapper.selectCount(queryWrapper.eq("id",id));
+    if(result!=0){
+      return Result.ok().data("exist",true);
+    }
+    return Result.ok().data("exist",false);
   }
 }
