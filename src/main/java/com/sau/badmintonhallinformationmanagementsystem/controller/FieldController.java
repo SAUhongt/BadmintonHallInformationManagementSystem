@@ -1,5 +1,6 @@
 package com.sau.badmintonhallinformationmanagementsystem.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -7,6 +8,7 @@ import com.sau.badmintonhallinformationmanagementsystem.bean.Coach;
 import com.sau.badmintonhallinformationmanagementsystem.bean.Field;
 import com.sau.badmintonhallinformationmanagementsystem.mapper.FieldMapper;
 import com.sau.badmintonhallinformationmanagementsystem.utils.Result;
+import com.sau.badmintonhallinformationmanagementsystem.utils.TimeUtil;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -80,5 +82,14 @@ public class FieldController {
       return Result.ok().data("exist",true);
     }
     return Result.ok().data("exist",false);
+  }
+
+  @PostMapping("/fullOver")
+  public Result isfullOver(@RequestBody Field field){
+    boolean result = TimeUtil.isFullOver(JSON.parseArray(field.getPriceInfo()));
+    if(result){
+      return Result.ok().data("fullOver",true);
+    }
+    return Result.ok().data("fullOver",false);
   }
 }

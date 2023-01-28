@@ -13,10 +13,11 @@ import com.sau.badmintonhallinformationmanagementsystem.mapper.FieldMapper;
 import com.sau.badmintonhallinformationmanagementsystem.mapper.MemberMapper;
 import com.sau.badmintonhallinformationmanagementsystem.mapper.PaymentMapper;
 import com.sau.badmintonhallinformationmanagementsystem.utils.Result;
+import com.sau.badmintonhallinformationmanagementsystem.utils.TimeUtil;
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,15 +80,14 @@ public class PaymentService {
       if (field != null) {
         JSONArray priceInfo = JSONObject.parseArray(field.getPriceInfo());
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        try {
-          for (i = 0; i < priceInfo.size(); i++) {
-            System.out.println(sdf.parse(priceInfo.getJSONObject(i).getString("startTime")));
+        for (i = 0; i < priceInfo.size(); i++) {
+          if(TimeUtil.isOver(order.getString("startTime"),order.getString("endTime"),
+              priceInfo.getJSONObject(i).getString("startTime"),priceInfo.getJSONObject(i).getString("endTime"))){
+            long sum = TimeUtil.overTime(order.getString("startTime"),order.getString("endTime"),
+                priceInfo.getJSONObject(i).getString("startTime"),priceInfo.getJSONObject(i).getString("endTime"))/(1000*60);
+            account = account.add(BigDecimal.valueOf(sum).multiply(priceInfo.getJSONObject(i).getBigDecimal("price")).divide(new BigDecimal("60.00")));
           }
-        } catch (ParseException e) {
-          throw new RuntimeException(e);
         }
-
-        System.out.println(priceInfo);
       }
     }
     return Result.ok().data("account",account.toString()).data("bonus",bonus);

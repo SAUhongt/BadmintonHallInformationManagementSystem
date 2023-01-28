@@ -2,8 +2,7 @@ package com.sau.badmintonhallinformationmanagementsystem.bean;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import io.swagger.models.auth.In;
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * @author SRDZ
